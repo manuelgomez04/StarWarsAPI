@@ -1,49 +1,51 @@
 $(document).ready(function () {
     const dataContent = $('.pokemon-grid');
-    const apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=151'; // Puedes ajustar el límite según tus necesidades
+    const loadingIndicator = $('#loading');
+    const apiUrl = 'https://swapi.dev/api/people'; // URL de la API de Star Wars
 
-    $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        success: function (response) {
-            const pokemonList = response.results;
+    function fetchAllPeople(url, peopleList = []) {
+        return $.ajax({
+            url: url,
+            method: 'GET'
+        }).then(function (response) {
+            peopleList = peopleList.concat(response.results);
+            const nextPage = response.next;
 
-            var requests = pokemonList.map(function (pokemon) {
-                return $.ajax({
-                    url: pokemon.url,
-                    method: 'GET'
-                });
+            if (nextPage) {
+                return fetchAllPeople(nextPage, peopleList);
+            } else {
+                return peopleList;
+            }
+        });
+    }
+
+    loadingIndicator.show(); // Mostrar el GIF de carga
+
+    fetchAllPeople(apiUrl).then(function (peopleList) {
+        var requests = peopleList.map(function (person) {
+            return $.ajax({
+                url: person.url,
+                method: 'GET'
             });
+        });
 
-            $.when.apply($, requests).done(function () {
-                var responses = Array.prototype.slice.call(arguments);
-                responses.forEach(function (response) {
-                    var pokemonData = response[0];
-                    var pokemonCard = `
-                        <div class="pokemon-card" data-id="${pokemonData.id}">
-                            <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}" class="pokemon-image">
-                            <div class="pokemon-info">
-                                <div class="pokemon-name">
-                                    <a href="details.html?name=${pokemonData.name}">${capitalizeFirstLetter(pokemonData.name)}</a>
-                                </div>
-                                <div class="pokemon-number">#${pokemonData.id.toString().padStart(3, '0')}</div>
-                            </div>
-                            <div class="pokemon-types">
-                                ${pokemonData.types.map(function (typeInfo) {
-                        return '<span class="type-badge ' + typeInfo.type.name + '">' + capitalizeFirstLetter(typeInfo.type.name) + '</span>';
-                    }).join('')}
+        $.when.apply($, requests).done(function () {
+            var responses = Array.prototype.slice.call(arguments);
+            responses.forEach(function (response) {
+                var personData = response[0];
+                var personCard = `
+                    <div class="pokemon-card" data-id="${personData.url}">
+                        <div class="pokemon-info">
+                            <div class="pokemon-name">
+                                <a href="details.html?name=${personData.name}">${capitalizeFirstLetter(personData.name)}</a>
                             </div>
                         </div>
-                    `;
-                    dataContent.append(pokemonCard);
-                });
-            }).fail(function (error) {
-                console.error('Error fetching Pokémon data:', error);
+                    </div>
+                `;
+                dataContent.append(personCard);
             });
-        },
-        error: function (error) {
-            console.error('Error fetching Pokémon list:', error);
-        }
+            loadingIndicator.hide(); // Ocultar el GIF de carga
+        });
     });
 
     function capitalizeFirstLetter(string) {
