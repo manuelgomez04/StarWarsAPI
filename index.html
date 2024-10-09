@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla Pokémon</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/640px-International_Pok%C3%A9mon_logo.svg.png" alt="Logo de Pokémon" class="logo">
+        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/57A0EA5BFA41EA7991E8629C6563BC178462B0399E733A6249F8150F93ACFED8/scale?width=600&aspectRatio=1.78&format=webp"
+            alt="Logo de Pokémon" class="logo">
 
     </header>
 
     <main>
         <div class="pokemon-grid"></div>
+        <div id="loading" style="display: none;">
+            <img src="https://i0.wp.com/www.lanaldi.es/eu/wp-content/uploads/sites/6/2017/04/cargando-1.gif?fit=441%2C291"
+                alt="Loading...">
+        </div>
+      
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>
