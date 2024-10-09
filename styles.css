@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f8f8f8;
+
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    /* Centra el logo horizontalmente */
+    align-items: center;
+    padding: 20px;
+    background-color: #ED4747;
+    /* Cambia el color de fondo */
+
+}
+
+.logo {
+    height: 100px;
+}
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.pokemon-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-image {
+    width: 120px;
+    height: 120px;
+}
+
+.pokemon-info {
+    margin-top: 10px;
+}
+
+.pokemon-types {
+    margin-top: 10px;
+}
+
+.type-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.grass {
+    background-color: #78C850;
+}
+
+.poison {
+    background-color: #A040A0;
+}
+
+.fire {
+    background-color: #F08030;
+}
+
+.water {
+    background-color: #6890F0;
+}
+
+.bug {
+    background-color: #A8B820;
+}
+
+.flying {
+    background-color: #A890F0;
+}
+
+.normal {
+    background-color: #A8A878;
+}
+
+.fairy {
+    background-color: #EE99AC;
+}
+
+.electric {
+    background-color: #F8D030;
+}
+
+.ground {
+    background-color: #E0C068;
+}
+
+.fighting {
+    background-color: #C03028;
+}
+
+.psychic {
+    background-color: #F85888;
+}
+
+.ghost {
+    background-color: #705898;
+}
+
+.rock {
+    background-color: #B8A038;
+}
+
+.dragon {
+    background-color: #7038F8;
+}
+
+.ice {
+    background-color: #98D8D8;
+}
+
+.steel {
+    background-color: #B8B8D0;
+}
+
+.pokemon-name a {
+    color: inherit;
+    /* Hereda el color del elemento padre */
+    text-decoration: none;
+    /* Quita el subrayado */
+}
+
+.pokemon-name a:hover {
+    color: inherit;
+    /* Mantiene el color al pasar el ratón por encima */
+    text-decoration: none;
+    /* Mantiene el subrayado quitado al pasar el ratón por encima */
+}
